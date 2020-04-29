@@ -1,0 +1,24 @@
+.sidebar
+  .sidebar__user
+    .sidebar__user--name
+      .sidebar__user--name--side-header__box
+        .sidebar__user--name--side-header__box__user-name
+          = current_user.name
+        .sidebar__user--name--side-header__box__menu
+          .sidebar__user--name--side-header__box__menu__new-group
+            =link_to "/groups/new" do
+              =icon('far','edit',class: 'left')
+          .sidebar__user--name--side-header__box__menu__new-group__edit_user
+            =link_to edit_user_path(current_user) do
+              =icon('fa','cog',class: 'right')
+  .sidebar__group
+    .sidebar__group--list
+      - current_user.groups.each do |group|
+        .group
+          = link_to group_messages_path(group),class: 'link'  do
+            .group__name
+              = group.name
+            .group__message
+              = group.show_last_message
+      
+      
